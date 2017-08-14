@@ -54,7 +54,7 @@ bool WindowManager::CreateWnd(int Width, int Height, std::string Title) {
 		return false;
 	}
 
-	glfwSwapInterval(1);
+	glfwSwapInterval(0);
 
 	glGenVertexArrays(1 ,&m_vao);
 	glBindVertexArray(m_vao);
