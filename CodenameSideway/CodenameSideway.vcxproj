@@ -127,6 +127,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Source\Utilities\Logging.cpp" />
+    <ClCompile Include="Source\Window\WindowManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Utilities\Logging.hpp" />
+    <ClInclude Include="Source\Utilities\Singleton.hpp" />
+    <ClInclude Include="Source\Utilities\SmartPointer.hpp" />
+    <ClInclude Include="Source\Window\WindowManager.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
