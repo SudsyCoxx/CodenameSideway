@@ -3,6 +3,10 @@
 #include "Source\Utilities\FPSManager.hpp"
 #include "Source\Window\WindowManager.hpp"
 
+#include <iostream>
+
+#include "Source\MathFunctions\MathFuncs.hpp"
+
 int main(void)
 {
 	Utilities::FPSManager::GetInstance().Start();
@@ -11,9 +15,9 @@ int main(void)
 	while (!Graphics::WindowManager::GetInstance().ShouldClose())
 	{
 		Utilities::FPSManager::GetInstance().UpdateFPS();
-
+		
 		/* Render here */
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
 		/* Swap front and back buffers */
 		glfwSwapBuffers(Graphics::WindowManager::GetInstance().GetWindow());

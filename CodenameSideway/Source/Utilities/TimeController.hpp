@@ -9,7 +9,7 @@ namespace Utilities {
 	public:
 		TimeController() {}
 		
-		const int GetUpdatesPerSecond() { return m_totalRefreshInInterval; }
+		const int GetUpdatesPerSecond() { return m_totalRefreshInLastInterval; }
 
 		void Update() {
 			++m_totalRefreshInInterval;
@@ -21,6 +21,7 @@ namespace Utilities {
 			m_prevUpdateTime = m_stopWatch.ElapsedMs();
 
 			if (m_stopWatch.ElapsedMs() >= 1000) {
+				m_totalRefreshInLastInterval = m_totalRefreshInInterval;
 				m_totalRefreshInInterval = 0;
 				m_stopWatch.Reset();
 				m_prevUpdateTime = m_stopWatch.ElapsedMs();
@@ -42,9 +43,10 @@ namespace Utilities {
 
 	private:
 		Stopwatch m_stopWatch;
-		int m_refreshPerSec = 120;
+		int m_refreshPerSec = 60;
 		int m_totalRefreshInInterval = 0;
-		double m_refreshRateMS = 1000 / 120.f;
+		int m_totalRefreshInLastInterval = 0;
+		double m_refreshRateMS = 1000 / 60.f;
 		long m_prevUpdateTime = 0;
 
 	protected:

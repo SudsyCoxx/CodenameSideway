@@ -131,6 +131,10 @@
     <ClCompile Include="Source\Window\WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\MathFunctions\Matrices.hpp" />
+    <ClInclude Include="Source\MathFunctions\MathFuncs.hpp" />
+    <ClInclude Include="Source\MathFunctions\Quaternion.hpp" />
+    <ClInclude Include="Source\MathFunctions\Vector.hpp" />
     <ClInclude Include="Source\Utilities\FPSManager.hpp" />
     <ClInclude Include="Source\Utilities\Logging.hpp" />
     <ClInclude Include="Source\Utilities\Singleton.hpp" />

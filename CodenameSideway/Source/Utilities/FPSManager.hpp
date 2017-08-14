@@ -4,7 +4,7 @@
 #include "TimeController.hpp"
 
 namespace Utilities {
-	class FPSManager : TimeController, public Singleton<FPSManager> {
+	class FPSManager : private TimeController, public Singleton<FPSManager> {
 		friend class Singleton<FPSManager>;
 	public:
 		const int GetFPS() { return GetUpdatesPerSecond(); }
