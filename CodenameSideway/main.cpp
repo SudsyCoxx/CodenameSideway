@@ -10,7 +10,7 @@ int main(void)
 
 	while (!Graphics::WindowManager::GetInstance().ShouldClose())
 	{
-		Utilities::FPSManager::GetInstance().UpdateWindow();
+		Utilities::FPSManager::GetInstance().UpdateFPS();
 
 		/* Render here */
 		glClear(GL_COLOR_BUFFER_BIT);
