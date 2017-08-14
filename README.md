@@ -22,3 +22,4 @@ Like Codename: Kids Next Door, but better!
   -- Class .hpp and .cpp should be in correct folders
 - C++ classes should have .hpp headers
 - C exclusive classes should have .h headers
+- Use namespaces where appropriate to prevent conflicts
