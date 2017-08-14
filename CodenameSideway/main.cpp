@@ -1,30 +1,13 @@
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-#include "Source\Utilities\FPSManager.hpp"
 #include "Source\Window\WindowManager.hpp"
 
-#include <iostream>
-
-#include "Source\MathFunctions\MathFuncs.hpp"
-
-int main(void)
-{
-	Utilities::FPSManager::GetInstance().Start();
+int main(int argc, char** argv) {
+	// Create Window and Setup Window Properties
 	Graphics::WindowManager::GetInstance().CreateWnd(640, 480, "Codename: Sideway");
 
-	while (!Graphics::WindowManager::GetInstance().ShouldClose())
-	{
-		Utilities::FPSManager::GetInstance().UpdateFPS();
-		
-		/* Render here */
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+	// Setup Graphics Stuff Here
 
-		/* Swap front and back buffers */
-		glfwSwapBuffers(Graphics::WindowManager::GetInstance().GetWindow());
-
-		/* Poll for and process events */
-		glfwPollEvents();
-	}
+	// Run Game
+	Graphics::WindowManager::GetInstance().Run();
 
 	return 0;
 }

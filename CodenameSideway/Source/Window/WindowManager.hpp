@@ -1,15 +1,14 @@
 #pragma once
 
+#define GLEW_STATIC
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
+
 #include <string>
 
 #include "../Utilities/Singleton.hpp"
 #include "../Utilities/SmartPointer.hpp"
 
-
-
-#define GLEW_STATIC
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
 
 namespace Graphics {
 	class WindowManager : public Utilities::Singleton<WindowManager> {
@@ -21,15 +20,16 @@ namespace Graphics {
 		void SetProperties();
 		
 		bool CreateWnd(int Width, int Height, std::string Title);
-		void DestroyWnd();
-
-		bool ShouldClose();
+		void Run();
 
 		static void WndSizeCallback(GLFWwindow* wnd, int width, int height);
 
 	private:
 		WindowManager(const WindowManager& s) = delete;
 		WindowManager& operator=(const WindowManager& s) = delete;
+		
+		void DestroyWnd();
+		bool ShouldClose();
 
 		GLFWwindow* m_window;
 

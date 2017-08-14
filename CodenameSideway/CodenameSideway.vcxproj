@@ -135,6 +135,8 @@
     <ClInclude Include="Source\MathFunctions\MathFuncs.hpp" />
     <ClInclude Include="Source\MathFunctions\Quaternion.hpp" />
     <ClInclude Include="Source\MathFunctions\Vector.hpp" />
+    <ClInclude Include="Source\Rendering\Renderable.hpp" />
+    <ClInclude Include="Source\Rendering\Renderer.hpp" />
     <ClInclude Include="Source\Utilities\FPSManager.hpp" />
     <ClInclude Include="Source\Utilities\Logging.hpp" />
     <ClInclude Include="Source\Utilities\Singleton.hpp" />

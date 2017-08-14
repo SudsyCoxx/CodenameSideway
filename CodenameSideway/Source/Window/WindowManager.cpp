@@ -1,6 +1,7 @@
 #include "WindowManager.hpp"
 
 #include "../Utilities/Logging.hpp"
+#include "../Utilities/FPSManager.hpp"
 
 using namespace Graphics;
 using namespace Utilities;
@@ -73,4 +74,23 @@ bool WindowManager::ShouldClose() {
 
 void WindowManager::WndSizeCallback(GLFWwindow* wnd, int width, int height) {
 
+}
+
+void WindowManager::Run() {
+	Utilities::FPSManager::GetInstance().Start();
+
+	while (!ShouldClose())
+	{
+		Utilities::FPSManager::GetInstance().UpdateFPS();
+
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		
+
+		glfwSwapBuffers(GetWindow());
+
+		glfwPollEvents();
+	}
+
+	DestroyWnd();
 }
