@@ -5,15 +5,14 @@
 #include "Singleton.hpp"
 
 namespace Utilities {
-
-
-	class Logging : Singleton<Logging> {
-		enum LogLevel {
-			ID_DEBUG = 0,
-			ID_TRACE = 1,
-			ID_OTHER = 2
-		};
-
+	enum LogLevel {
+		ID_DEBUG = 0,
+		ID_TRACE = 1,
+		ID_OTHER = 2
+	};
+	
+	class Logging : public Singleton<Logging> {
+		friend class Singleton<Logging>;
 	public:
 		bool SetLocation(std::string LogLocation);
 		bool EnableLogLevel(LogLevel Level, bool Enable);
@@ -21,7 +20,6 @@ namespace Utilities {
 
 		~Logging();
 	private:
-		Logging();
 		Logging(const Logging& s) = delete;
 		Logging& operator=(const Logging& s) = delete;
 
@@ -39,6 +37,6 @@ namespace Utilities {
 		std::ofstream m_currentLog;
 
 	protected:
+		Logging();
 	};
-
 }
