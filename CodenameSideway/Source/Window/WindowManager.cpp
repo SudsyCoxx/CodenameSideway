@@ -6,6 +6,8 @@
 #include "../Input/KeyHandler.hpp"
 #include "../Input/MouseHandler.hpp"
 
+#include "../Rendering/Objects/Square.hpp"
+
 using namespace Graphics;
 using namespace Utilities;
 
@@ -24,7 +26,7 @@ void WindowManager::SetProperties() {
 	glfwWindowHint(GLFW_SAMPLES, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
-	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+	//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 }
 
@@ -92,15 +94,17 @@ void WindowManager::WndSizeCallback(GLFWwindow* wnd, int width, int height) {
 void WindowManager::Run() {
 	Utilities::FPSManager::GetInstance().Start();
 
+	Utilities::SmartPointer<Square> r(new Square(vec3(0, 0, 0), vec2(1, 1)));
+
 	while (!ShouldClose()) {
 		Utilities::FPSManager::GetInstance().UpdateFPS();
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		for (auto& object : m_renderableObjects) {
-			object.second->Setup();
-			object.second->Draw();
-		}
+		//for (auto& object : m_renderableObjects) {
+			r->Setup();
+			r->Draw();
+		//}
 
 		glfwSwapBuffers(GetWindow());
 

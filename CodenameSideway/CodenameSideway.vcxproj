@@ -132,6 +132,7 @@
     <ClCompile Include="Source\Utilities\Logging.cpp" />
     <ClCompile Include="Source\Window\WindowManager.cpp" />
     <ClCompile Include="Source\Buffers\VertexBufferObject.cpp" />
+    <ClCompile Include="Source\Rendering\Objects\Square.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Input\KeyHandler.hpp" />
@@ -144,6 +145,7 @@
     <ClInclude Include="Source\Rendering\Renderable.hpp" />
     <ClInclude Include="Source\Rendering\Renderer.hpp" />
     <ClInclude Include="Source\Rendering\RenderInterface.hpp" />
+    <ClInclude Include="Source\Shaders\ShaderLoader.hpp" />
     <ClInclude Include="Source\Threading\ThreadManager.hpp" />
     <ClInclude Include="Source\Utilities\FPSManager.hpp" />
     <ClInclude Include="Source\Utilities\Logging.hpp" />
@@ -153,6 +155,11 @@
     <ClInclude Include="Source\Utilities\Timer.hpp" />
     <ClInclude Include="Source\Window\WindowManager.hpp" />
     <ClInclude Include="Source\Buffers\VertexBufferObject.hpp" />
+    <ClInclude Include="Source\Rendering\Objects\Square.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Shaders\fs.shader" />
+    <None Include="Resources\Shaders\vs.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

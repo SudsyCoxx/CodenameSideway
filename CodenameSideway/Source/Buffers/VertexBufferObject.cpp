@@ -14,20 +14,20 @@ VertexBufferObject::~VertexBufferObject() {
 }
 
 void VertexBufferObject::bind() {
-	if (!m_enabled) {
+	//if (!m_enabled) {
 		glBindBuffer(m_type, m_buffer);
 		m_enabled != m_enabled;
-	}
+	//}
 }
 
 void VertexBufferObject::unbind() {
-	if (m_enabled) {
+	//if (m_enabled) {
 		glBindBuffer(m_type, m_buffer);
 		m_enabled != m_enabled;
-	}
+	//}
 }
 
-void VertexBufferObject::bufferData(int Count, int SizeOfElement, void* Elements, unsigned int DrawType) {
+void VertexBufferObject::bufferData(int Count, int SizeOfElement, void* Elements, GLuint DrawType) {
 	bind();
 	glBufferData(m_type, Count*SizeOfElement, Elements, DrawType);
 	unbind();

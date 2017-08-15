@@ -33,6 +33,9 @@
     <ClCompile Include="Source\Input\MouseHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Rendering\Objects\Square.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Utilities\Singleton.hpp">
@@ -92,5 +95,15 @@
     <ClInclude Include="Source\Input\MouseHandler.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Shaders\ShaderLoader.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\Objects\Square.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Shaders\fs.shader" />
+    <None Include="Resources\Shaders\vs.shader" />
   </ItemGroup>
 </Project>
