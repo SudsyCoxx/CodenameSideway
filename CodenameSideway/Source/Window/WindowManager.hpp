@@ -20,6 +20,7 @@ namespace Graphics {
 	
 		GLFWwindow* GetWindow() { return m_window; }
 		void SetProperties();
+		void SetCallbacks();
 		
 		bool CreateWnd(int Width, int Height, std::string Title);
 		void Run();

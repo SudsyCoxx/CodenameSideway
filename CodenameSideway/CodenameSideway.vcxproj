@@ -127,11 +127,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Source\Input\KeyHandler.cpp" />
+    <ClCompile Include="Source\Input\MouseHandler.cpp" />
     <ClCompile Include="Source\Utilities\Logging.cpp" />
     <ClCompile Include="Source\Window\WindowManager.cpp" />
     <ClCompile Include="Source\Buffers\VertexBufferObject.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Input\KeyHandler.hpp" />
+    <ClInclude Include="Source\Input\MouseHandler.hpp" />
     <ClInclude Include="Source\MathFunctions\Matrices.hpp" />
     <ClInclude Include="Source\MathFunctions\MathFuncs.hpp" />
     <ClInclude Include="Source\MathFunctions\Quaternion.hpp" />

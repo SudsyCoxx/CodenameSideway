@@ -3,6 +3,9 @@
 #include "../Utilities/Logging.hpp"
 #include "../Utilities/FPSManager.hpp"
 
+#include "../Input/KeyHandler.hpp"
+#include "../Input/MouseHandler.hpp"
+
 using namespace Graphics;
 using namespace Utilities;
 
@@ -23,6 +26,13 @@ void WindowManager::SetProperties() {
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+}
+
+void WindowManager::SetCallbacks() {
+	glfwSetKeyCallback(GetWindow(), KeyHandler::Callback);
+	glfwSetMouseButtonCallback(GetWindow(), MouseHandler::ButtonCallback);
+	glfwSetCursorPosCallback(GetWindow(), MouseHandler::PositionCallback);
+	glfwSetWindowSizeCallback(GetWindow(), WindowManager::WndSizeCallback);
 }
 
 bool WindowManager::CreateWnd(int Width, int Height, std::string Title) {
@@ -60,6 +70,8 @@ bool WindowManager::CreateWnd(int Width, int Height, std::string Title) {
 	glGenVertexArrays(1 ,&m_vao);
 	glBindVertexArray(m_vao);
 
+	SetCallbacks();
+
 	return true;
 }
 
@@ -73,7 +85,8 @@ bool WindowManager::ShouldClose() {
 }
 
 void WindowManager::WndSizeCallback(GLFWwindow* wnd, int width, int height) {
-
+	GetInstance().m_width = width;
+	GetInstance().m_height = height;
 }
 
 void WindowManager::Run() {
@@ -92,6 +105,14 @@ void WindowManager::Run() {
 		glfwSwapBuffers(GetWindow());
 
 		glfwPollEvents();
+
+		if (KeyHandler::GetInstance().GetKeyHoldTime(GLFW_KEY_ESCAPE) > 0 || KeyHandler::GetInstance().GetKeyHoldTime(GLFW_KEY_Q) > 0) {
+			glfwSetWindowShouldClose(GetWindow(), GLFW_TRUE);
+		}
+	}
+
+	for (auto& object : m_renderableObjects) {
+		object.second->Destroy();
 	}
 
 	DestroyWnd();
