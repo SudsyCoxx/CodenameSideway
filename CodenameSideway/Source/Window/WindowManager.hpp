@@ -4,11 +4,13 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
+#include <map>
 #include <string>
 
 #include "../Utilities/Singleton.hpp"
 #include "../Utilities/SmartPointer.hpp"
 
+#include "../Rendering/RenderInterface.hpp"
 
 namespace Graphics {
 	class WindowManager : public Utilities::Singleton<WindowManager> {
@@ -21,6 +23,8 @@ namespace Graphics {
 		
 		bool CreateWnd(int Width, int Height, std::string Title);
 		void Run();
+
+		bool AddRenderableObject(std::string ObjectName, Utilities::SmartPointer<RenderInterface>& object);
 
 		static void WndSizeCallback(GLFWwindow* wnd, int width, int height);
 
@@ -35,6 +39,8 @@ namespace Graphics {
 
 		int m_width, m_height;
 		unsigned int m_vao;
+
+		std::map<std::string, Utilities::SmartPointer<RenderInterface>> m_renderableObjects;
 
 	protected:
 		WindowManager();

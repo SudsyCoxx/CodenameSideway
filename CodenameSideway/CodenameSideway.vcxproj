@@ -129,14 +129,17 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Source\Utilities\Logging.cpp" />
     <ClCompile Include="Source\Window\WindowManager.cpp" />
+    <ClCompile Include="Source\Buffers\VertexBufferObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\MathFunctions\Matrices.hpp" />
     <ClInclude Include="Source\MathFunctions\MathFuncs.hpp" />
     <ClInclude Include="Source\MathFunctions\Quaternion.hpp" />
     <ClInclude Include="Source\MathFunctions\Vector.hpp" />
+    <ClInclude Include="Source\Rendering\Layer.hpp" />
     <ClInclude Include="Source\Rendering\Renderable.hpp" />
     <ClInclude Include="Source\Rendering\Renderer.hpp" />
+    <ClInclude Include="Source\Rendering\RenderInterface.hpp" />
     <ClInclude Include="Source\Threading\ThreadManager.hpp" />
     <ClInclude Include="Source\Utilities\FPSManager.hpp" />
     <ClInclude Include="Source\Utilities\Logging.hpp" />
@@ -145,6 +148,7 @@
     <ClInclude Include="Source\Utilities\TimeController.hpp" />
     <ClInclude Include="Source\Utilities\Timer.hpp" />
     <ClInclude Include="Source\Window\WindowManager.hpp" />
+    <ClInclude Include="Source\Buffers\VertexBufferObject.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

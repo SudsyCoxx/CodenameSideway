@@ -84,7 +84,9 @@ void WindowManager::Run() {
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		
+		for (auto& object : m_renderableObjects) {
+			object.second->Draw();
+		}
 
 		glfwSwapBuffers(GetWindow());
 
@@ -92,4 +94,11 @@ void WindowManager::Run() {
 	}
 
 	DestroyWnd();
+}
+
+bool WindowManager::AddRenderableObject(std::string ObjectName , Utilities::SmartPointer<RenderInterface>& object) {
+	if (m_renderableObjects.count(ObjectName) == 0) {
+		m_renderableObjects[ObjectName] = object;
+	}
+	return false;
 }

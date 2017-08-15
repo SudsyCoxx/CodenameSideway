@@ -58,7 +58,7 @@ namespace Utilities {
 				}
 
 				m_data = sp.m_data;
-				m_refCount = sp.reference;
+				m_refCount = sp.m_refCount;
 				m_refCount->AddRef();
 			}
 			return *this;

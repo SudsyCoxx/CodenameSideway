@@ -1,10 +1,9 @@
 #pragma once
 
-class Renderer {
+#include "RenderInterface.hpp"
+
+class Renderer : public RenderInterface {
 public:
-	virtual void Setup() = 0;
-	virtual void Destroy() = 0;
-	virtual void Draw() = 0;
 
 private:
 
