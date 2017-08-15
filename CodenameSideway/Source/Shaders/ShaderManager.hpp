@@ -23,6 +23,7 @@ namespace Graphics {
 		ShaderManager& operator=(const ShaderManager& s) = delete;
 
 		int m_nextShaderId = 0;
+		unsigned int m_shaderInUse = -1;
 
 		std::map<int, SmartPointer<Shader>> m_shaderMap;
 		std::map<std::pair<std::string, std::string>, int> m_shaderLookupMap;

@@ -18,6 +18,8 @@ int ShaderManager::LoadShader(std::string PathVS, std::string PathFS) {
 }
 
 bool ShaderManager::UseShader(int Id) {
+	if (m_shaderInUse == Id) return true;
+
 	if (m_shaderMap.count(Id) > 0) {
 		m_shaderMap[Id]->UseShader();
 		return true;
