@@ -8,7 +8,7 @@ class Square : public Renderable
 {
 public:
 	Square(vec3 position, vec2 size) {
-		shaderProgram = ShaderLoader::Load("C:\\Resources\\Shaders\\vs.shader", "C:\\Resources\\Shaders\\fs.shader");
+		shaderProgram = ShaderLoader::Load(".\\Resources\\Shaders\\vs.shader", ".\\Resources\\Shaders\\fs.shader");
 		glUseProgram(shaderProgram);
 
 		m_size = size;
