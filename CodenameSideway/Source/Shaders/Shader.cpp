@@ -25,7 +25,8 @@ Shader::~Shader() {
 }
 
 void Shader::UseShader() {
-	glUseProgram(m_program);
+	if(m_program != -1)
+		glUseProgram(m_program);
 }
 
 void Shader::LoadShader() {

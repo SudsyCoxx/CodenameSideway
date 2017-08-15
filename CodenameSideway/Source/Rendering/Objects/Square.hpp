@@ -29,8 +29,7 @@ public:
 	}
 
 	void Draw() {
-		if(m_shaderProgram != -1)
-			Graphics::ShaderManager::GetInstance().UseShader(m_shaderProgram);
+		Graphics::ShaderManager::GetInstance().UseShader(m_shaderProgram);
 		m_vbo->bind();
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertex), 0);
