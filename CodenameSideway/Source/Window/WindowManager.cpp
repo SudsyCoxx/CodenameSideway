@@ -85,6 +85,7 @@ void WindowManager::Run() {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		for (auto& object : m_renderableObjects) {
+			object.second->Setup();
 			object.second->Draw();
 		}
 

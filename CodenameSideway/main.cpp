@@ -1,6 +1,7 @@
 
 #include "Source\Window\WindowManager.hpp"
 #include "Source\Buffers\VertexBufferObject.hpp"
+#include "Source\Rendering\Layer.hpp"
 
 int main(int argc, char** argv) {
 

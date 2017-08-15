@@ -4,7 +4,17 @@
 
 class Renderable : public RenderInterface {
 public:
+	void Setup() {
 
+	}
+
+	void Draw() {
+
+	}
+
+	void Destroy() {
+
+	}
 private:
 
 protected:
