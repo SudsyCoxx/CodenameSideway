@@ -1,5 +1,7 @@
 #include "WindowManager.hpp"
 
+#include <sstream>
+
 #include "../Utilities/Logging.hpp"
 #include "../Utilities/FPSManager.hpp"
 
@@ -94,17 +96,23 @@ void WindowManager::WndSizeCallback(GLFWwindow* wnd, int width, int height) {
 void WindowManager::Run() {
 	Utilities::FPSManager::GetInstance().Start();
 
-	std::vector<Utilities::SmartPointer<Square>> r;
-	r.push_back(new Square(vec3(0, 0, 0), vec2(1, 1)));
-	r.push_back(new Square(vec3(-1, -1, 0), vec2(1, 1)));
+	for (float i = -1; i < 1; i+=.125f) {
+		for (float j = -1; j < 1; j+=.125f) {
+			std::stringstream ss;
+			ss << i << j;
+
+			AddRenderableObject(ss.str(), Utilities::SmartPointer<RenderInterface>(new Square(vec3(i, j, 0), vec2(.12f, .12f))));
+		}
+	}
+
 	while (!ShouldClose()) {
 		Utilities::FPSManager::GetInstance().UpdateFPS();
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		for (auto& object : r) {
-			object->Setup();
-			object->Draw();
+		for (auto& object : m_renderableObjects) {
+			object.second->Setup();
+			object.second->Draw();
 		}
 
 		glfwSwapBuffers(GetWindow());
