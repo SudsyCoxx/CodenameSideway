@@ -94,17 +94,18 @@ void WindowManager::WndSizeCallback(GLFWwindow* wnd, int width, int height) {
 void WindowManager::Run() {
 	Utilities::FPSManager::GetInstance().Start();
 
-	Utilities::SmartPointer<Square> r(new Square(vec3(0, 0, 0), vec2(1, 1)));
-
+	std::vector<Utilities::SmartPointer<Square>> r;
+	r.push_back(new Square(vec3(0, 0, 0), vec2(1, 1)));
+	r.push_back(new Square(vec3(-1, -1, 0), vec2(1, 1)));
 	while (!ShouldClose()) {
 		Utilities::FPSManager::GetInstance().UpdateFPS();
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		//for (auto& object : m_renderableObjects) {
-			r->Setup();
-			r->Draw();
-		//}
+		for (auto& object : r) {
+			object->Setup();
+			object->Draw();
+		}
 
 		glfwSwapBuffers(GetWindow());
 

@@ -14,16 +14,16 @@ public:
 		m_size = size;
 		m_position = position;
 		m_vbo = new Buffers::VertexBufferObject(GL_ARRAY_BUFFER); 
+		m_vertices.reset(new vertex[6]);
 		SetVertices();
 		Setup();
 	}
 
 	~Square() {
-
 	}
 
 	void Setup() {
-		m_vbo->bufferData(6, sizeof(vertex), m_vertices, GL_STATIC_DRAW);
+		m_vbo->bufferData(6, sizeof(vertex), m_vertices.get(), GL_STATIC_DRAW);
 	}
 
 	void Draw() {
@@ -51,7 +51,6 @@ private:
 	unsigned int shaderProgram;
 	MathFuncs::vec2 m_size;
 	
-
 protected:
 
 };

@@ -19,7 +19,7 @@ public:
 private:
 
 protected:
-	Buffers::VertexBufferObject* m_vbo;
-	vertex m_vertices[6];
+	Utilities::SmartPointer<Buffers::VertexBufferObject> m_vbo;
+	std::unique_ptr<vertex[]> m_vertices;
 	vec3 m_position;
 };
