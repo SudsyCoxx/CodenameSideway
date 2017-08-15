@@ -127,14 +127,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Source\Shaders\Shader.cpp" />
     <ClCompile Include="Source\Input\KeyHandler.cpp" />
     <ClCompile Include="Source\Input\MouseHandler.cpp" />
+    <ClCompile Include="Source\Shaders\ShaderManager.cpp" />
     <ClCompile Include="Source\Utilities\Logging.cpp" />
     <ClCompile Include="Source\Window\WindowManager.cpp" />
     <ClCompile Include="Source\Buffers\VertexBufferObject.cpp" />
     <ClCompile Include="Source\Rendering\Objects\Square.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Shaders\Shader.hpp" />
     <ClInclude Include="Source\Input\KeyHandler.hpp" />
     <ClInclude Include="Source\Input\MouseHandler.hpp" />
     <ClInclude Include="Source\MathFunctions\Matrices.hpp" />
@@ -145,7 +148,7 @@
     <ClInclude Include="Source\Rendering\Renderable.hpp" />
     <ClInclude Include="Source\Rendering\Renderer.hpp" />
     <ClInclude Include="Source\Rendering\RenderInterface.hpp" />
-    <ClInclude Include="Source\Shaders\ShaderLoader.hpp" />
+    <ClInclude Include="Source\Shaders\ShaderManager.hpp" />
     <ClInclude Include="Source\Threading\ThreadManager.hpp" />
     <ClInclude Include="Source\Utilities\FPSManager.hpp" />
     <ClInclude Include="Source\Utilities\Logging.hpp" />

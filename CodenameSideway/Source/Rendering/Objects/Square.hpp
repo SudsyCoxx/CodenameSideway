@@ -1,15 +1,17 @@
 #pragma once
 
-#include "../Renderable.hpp"
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
+
+#include "../../Shaders/ShaderManager.hpp"
 #include "../../MathFunctions/Vector.hpp"
-#include "../../Shaders/ShaderLoader.hpp"
+#include "../Renderable.hpp"
 
 class Square : public Renderable
 {
 public:
 	Square(vec3 position, vec2 size) {
-		shaderProgram = ShaderLoader::Load(".\\Resources\\Shaders\\vs.shader", ".\\Resources\\Shaders\\fs.shader");
-		glUseProgram(shaderProgram);
+		m_shaderProgram = Graphics::ShaderManager::GetInstance().LoadShader(".\\Resources\\Shaders\\vs.shader", ".\\Resources\\Shaders\\fs.shader");
 
 		m_size = size;
 		m_position = position;
@@ -27,6 +29,8 @@ public:
 	}
 
 	void Draw() {
+		if(m_shaderProgram != -1)
+			Graphics::ShaderManager::GetInstance().UseShader(m_shaderProgram);
 		m_vbo->bind();
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertex), 0);
@@ -48,7 +52,7 @@ public:
 	}
 
 private:
-	unsigned int shaderProgram;
+	unsigned int m_shaderProgram = -1;
 	MathFuncs::vec2 m_size;
 	
 protected:
