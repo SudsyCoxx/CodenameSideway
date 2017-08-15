@@ -79,8 +79,7 @@ void WindowManager::WndSizeCallback(GLFWwindow* wnd, int width, int height) {
 void WindowManager::Run() {
 	Utilities::FPSManager::GetInstance().Start();
 
-	while (!ShouldClose())
-	{
+	while (!ShouldClose()) {
 		Utilities::FPSManager::GetInstance().UpdateFPS();
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
