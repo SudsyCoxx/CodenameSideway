@@ -99,8 +99,8 @@ void WindowManager::WndSizeCallback(GLFWwindow* wnd, int width, int height) {
 void WindowManager::Run() {
 	Utilities::FPSManager::GetInstance().Start();
 
-	for (float i = -5; i < 5; i+=.25f) {
-		for (float j = -5; j < 5; j+=.25f) {
+	for (float i = -10; i < 10; i+=.25f) {
+		for (float j = -10; j < 10; j+=.25f) {
 			std::stringstream ss;
 			ss << i << j;
 

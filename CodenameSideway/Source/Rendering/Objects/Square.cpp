@@ -19,7 +19,7 @@ Square::~Square() {
 }
 
 void Square::Setup() {
-	m_vbo->bufferData(6, sizeof(vertex), m_vertices.get(), GL_STATIC_DRAW);
+	m_vbo->bufferData(4, sizeof(vertex), m_vertices.get(), GL_STATIC_DRAW);
 }
 
 void Square::Draw() {
@@ -27,11 +27,17 @@ void Square::Draw() {
 	Graphics::ShaderManager::GetInstance().setUniformMat4("pr_matrix", Ortho(-10, 10, -10, 10, -.1, -100));
 
 	m_vbo->bind();
+
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
+
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertex), 0);
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_TRUE, sizeof(vertex), (void*)offsetof(vertex, vertex::color));
+
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, m_indices.get());
+
+	glDisableVertexAttribArray(0);
+	glDisableVertexAttribArray(1);
 
 	m_vbo->unbind();
 }
