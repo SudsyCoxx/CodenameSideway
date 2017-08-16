@@ -99,12 +99,12 @@ void WindowManager::WndSizeCallback(GLFWwindow* wnd, int width, int height) {
 void WindowManager::Run() {
 	Utilities::FPSManager::GetInstance().Start();
 
-	for (float i = -1; i < 1; i+=.25f) {
-		for (float j = -1; j < 1; j+=.25f) {
+	for (float i = -5; i < 5; i+=.25f) {
+		for (float j = -5; j < 5; j+=.25f) {
 			std::stringstream ss;
 			ss << i << j;
 
-			AddRenderableObject(ss.str(), Utilities::SmartPointer<RenderInterface>(new Square(vec3(i, j, 1), vec2(.24f, .24f), vec3(i, j, i-j))));
+			AddRenderableObject(ss.str(), Utilities::SmartPointer<RenderInterface>(new Square(vec3(i, j, 1), vec2(.24f, .24f), vec3(cos(i), sin(i-j), tan(i-j)*atan(i+2*j)))));
 		}
 	}
 
@@ -112,14 +112,6 @@ void WindowManager::Run() {
 	time(&prev);
 	while (!ShouldClose()) {
 		Utilities::FPSManager::GetInstance().UpdateFPS();
-
-		//time(&curr);
-		//if (curr - prev > 1) {
-		//	prev = curr;
-		//	std::stringstream ss;
-		//	ss << Utilities::FPSManager::GetInstance().GetFPS() << " FPS";
-		//	glfwSetWindowTitle(GetWindow(), ss.str().c_str());
-		//}
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 

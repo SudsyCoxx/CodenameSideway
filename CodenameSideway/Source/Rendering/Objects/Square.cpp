@@ -30,7 +30,7 @@ void Square::Draw() {
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertex), 0);
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(vertex), (void*)offsetof(vertex, vertex::color));
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_TRUE, sizeof(vertex), (void*)offsetof(vertex, vertex::color));
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, m_indices.get());
 
 	m_vbo->unbind();
