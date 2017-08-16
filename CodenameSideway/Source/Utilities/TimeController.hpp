@@ -38,7 +38,7 @@ namespace Utilities {
 		void SetUpdatesPerSecond(int RefreshRate) {
 			if (RefreshRate <= 0) return;
 			m_refreshPerSec = RefreshRate;
-			m_refreshRateMS = 1000 / RefreshRate;
+			m_refreshRateMS = 1000 / float(RefreshRate);
 		}
 
 	private:

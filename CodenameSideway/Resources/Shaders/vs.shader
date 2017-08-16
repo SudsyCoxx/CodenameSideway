@@ -19,7 +19,7 @@ void main()
 {
     gl_Position = pr_matrix * vec4(position,1);
     vs_out.position = vec4(position,1);
-	vs_out.color = vec4(1, 1, 1, 1);// color;
+	vs_out.color = color;
     vs_out.uv = uv;
     vs_out.tid = tid;
 }

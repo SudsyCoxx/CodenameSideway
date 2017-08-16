@@ -14,7 +14,7 @@ public:
 
 	struct vertex {
 		vec3 position;
-		vec2 color;
+		vec3 color;
 	};
 
 private:
@@ -24,4 +24,5 @@ protected:
 	std::unique_ptr<vertex[]> m_vertices;
 	std::unique_ptr<unsigned int[]> m_indices;
 	vec3 m_position;
+	vec3 m_color;
 };

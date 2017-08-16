@@ -1,10 +1,11 @@
 #include "Square.hpp"
 
-Square::Square(vec3 position, vec2 size) {
+Square::Square(vec3 position, vec2 size, vec3 color) {
 	m_shaderProgram = Graphics::ShaderManager::GetInstance().LoadShader(".\\Resources\\Shaders\\vs.shader", ".\\Resources\\Shaders\\fs.shader");
 
 	m_size = size;
 	m_position = position;
+	m_color = color;
 	m_vbo = new Buffers::VertexBufferObject(GL_ARRAY_BUFFER);
 	
 	m_vertices.reset(new vertex[4]);
@@ -27,7 +28,9 @@ void Square::Draw() {
 
 	m_vbo->bind();
 	glEnableVertexAttribArray(0);
+	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertex), 0);
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(vertex), (void*)offsetof(vertex, vertex::color));
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, m_indices.get());
 
 	m_vbo->unbind();
@@ -42,6 +45,11 @@ void Square::SetVertices() {
 	m_vertices[1].position = vec3(m_position.x + m_size.x, m_position.y, m_position.z);
 	m_vertices[2].position = vec3(m_position.x + m_size.x, m_position.y + m_size.y, m_position.z);
 	m_vertices[3].position = vec3(m_position.x, m_position.y + m_size.y, m_position.z);
+
+	m_vertices[0].color = m_color;
+	m_vertices[1].color = m_color;
+	m_vertices[2].color = m_color;
+	m_vertices[3].color = m_color;
 
 	m_indices[0] = 0;
 	m_indices[1] = 1;

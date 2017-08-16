@@ -10,7 +10,7 @@
 class Square : public Renderable
 {
 public:
-	Square(vec3 position, vec2 size);
+	Square(vec3 position, vec2 size, vec3 color = vec3(1,1,1));
 
 	~Square();
 

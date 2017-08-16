@@ -77,5 +77,7 @@ void ShaderManager::setUniform4f(const char* name, const vec4& vector) {
 }
 
 void ShaderManager::setUniformMat4(const char* name, const mat4& matrix) {
-	m_shaderMap[m_shaderInUse]->setUniformMat4(name, matrix);
+	if (m_shaderInUse != -1) {
+		m_shaderMap[m_shaderInUse]->setUniformMat4(name, matrix);
+	}
 }

@@ -28,7 +28,6 @@ void WindowManager::SetProperties() {
 	glfwWindowHint(GLFW_SAMPLES, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
-	//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 }
 
@@ -100,17 +99,27 @@ void WindowManager::WndSizeCallback(GLFWwindow* wnd, int width, int height) {
 void WindowManager::Run() {
 	Utilities::FPSManager::GetInstance().Start();
 
-	for (float i = -1; i < 1; i+=.125f) {
-		for (float j = -1; j < 1; j+=.125f) {
+	for (float i = -1; i < 1; i+=.25f) {
+		for (float j = -1; j < 1; j+=.25f) {
 			std::stringstream ss;
 			ss << i << j;
 
-			AddRenderableObject(ss.str(), Utilities::SmartPointer<RenderInterface>(new Square(vec3(i, j, 1), vec2(.12f, .12f))));
+			AddRenderableObject(ss.str(), Utilities::SmartPointer<RenderInterface>(new Square(vec3(i, j, 1), vec2(.24f, .24f), vec3(i, j, i-j))));
 		}
 	}
 
+	time_t prev, curr;
+	time(&prev);
 	while (!ShouldClose()) {
 		Utilities::FPSManager::GetInstance().UpdateFPS();
+
+		//time(&curr);
+		//if (curr - prev > 1) {
+		//	prev = curr;
+		//	std::stringstream ss;
+		//	ss << Utilities::FPSManager::GetInstance().GetFPS() << " FPS";
+		//	glfwSetWindowTitle(GetWindow(), ss.str().c_str());
+		//}
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
