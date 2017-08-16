@@ -23,6 +23,8 @@ void Square::Setup() {
 
 void Square::Draw() {
 	Graphics::ShaderManager::GetInstance().UseShader(m_shaderProgram);
+	Graphics::ShaderManager::GetInstance().setUniformMat4("pr_matrix", Ortho(-10, 10, -10, 10, -.1, -100));
+
 	m_vbo->bind();
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertex), 0);

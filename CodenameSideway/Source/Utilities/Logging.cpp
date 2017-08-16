@@ -7,7 +7,7 @@ using namespace Utilities;
 
 Logging::Logging() {
 	// Default log location
-	m_logFolder = "C:/Temp/CodenameSideway/";
+	m_logFolder = "";
 
 	// Add log level to log info array
 	m_logInfo[ID_DEBUG] = std::make_pair("Debug.txt", false);
@@ -104,8 +104,8 @@ bool Logging::OpenLog(LogLevel Level) {
 	if (m_currentLog.is_open()) {
 		m_currentLog.close();
 	}
-
-	m_currentLog.open(m_logFolder + m_logInfo[Level].first, std::iostream::out | std::iostream::app);
+	std::string path = m_logFolder + m_logInfo[Level].first;
+	m_currentLog.open(path, std::iostream::out | std::iostream::app);
 	return m_currentLog.is_open();
 }
 

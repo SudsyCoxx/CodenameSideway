@@ -4,3 +4,5 @@
 /x86/*
 /CodenameSideway/x86/*
 .vs/*
+CodenameSideway/Trace.txt
+CodenameSideway/Debug.txt

@@ -40,6 +40,8 @@ void WindowManager::SetCallbacks() {
 }
 
 bool WindowManager::CreateWnd(int Width, int Height, std::string Title) {
+	Utilities::Logging::GetInstance().EnableLogLevel(ID_TRACE, true);
+	Utilities::Logging::GetInstance().EnableLogLevel(ID_DEBUG, true);
 	Utilities::Logging::GetInstance().Log(ID_TRACE, 0, "Creating Window", "");
 
 	m_width = Width;
@@ -91,6 +93,8 @@ bool WindowManager::ShouldClose() {
 void WindowManager::WndSizeCallback(GLFWwindow* wnd, int width, int height) {
 	GetInstance().m_width = width;
 	GetInstance().m_height = height;
+
+	glViewport(0, 0, width, height);
 }
 
 void WindowManager::Run() {
@@ -101,7 +105,7 @@ void WindowManager::Run() {
 			std::stringstream ss;
 			ss << i << j;
 
-			AddRenderableObject(ss.str(), Utilities::SmartPointer<RenderInterface>(new Square(vec3(i, j, 0), vec2(.12f, .12f))));
+			AddRenderableObject(ss.str(), Utilities::SmartPointer<RenderInterface>(new Square(vec3(i, j, 1), vec2(.12f, .12f))));
 		}
 	}
 

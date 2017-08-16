@@ -1,6 +1,4 @@
-
 #include "Source\Window\WindowManager.hpp"
-#include "Source\Rendering\Objects\Square.hpp"
 
 int main(int argc, char** argv) {
 

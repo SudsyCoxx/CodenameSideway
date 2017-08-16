@@ -105,3 +105,39 @@ void Shader::LoadShader() {
 		glDeleteShader(VertexShaderID);
 		glDeleteShader(FragmentShaderID);
 }
+
+int Shader::getUniformLocation(const char* name) {
+	return glGetUniformLocation(m_program, name);
+}
+
+void Shader::setUniform1f(const char* name, float value) {
+	glUniform1f(getUniformLocation(name), value);
+}
+
+void Shader::setUniform1fv(const char* name, float* value, int count) {
+	glUniform1fv(getUniformLocation(name), count, value);
+}
+
+void Shader::setUniform1i(const char* name, int value) {
+	glUniform1i(getUniformLocation(name), value);
+}
+
+void Shader::setUniform1iv(const char* name, int* value, int count) {
+	glUniform1iv(getUniformLocation(name), count, value);
+}
+
+void Shader::setUniform2f(const char* name, const vec2& vector) {
+	glUniform2f(getUniformLocation(name), vector[0], vector[1]);
+}
+
+void Shader::setUniform3f(const char* name, const vec3& vector) {
+	glUniform3f(getUniformLocation(name), vector[0], vector[1], vector[2]);
+}
+
+void Shader::setUniform4f(const char* name, const vec4& vector) {
+	glUniform4f(getUniformLocation(name), vector[0], vector[1], vector[2], vector[3]);
+}
+
+void Shader::setUniformMat4(const char* name, const mat4& matrix) {
+	glUniformMatrix4fv(getUniformLocation(name), 1, GL_TRUE, matrix);
+}

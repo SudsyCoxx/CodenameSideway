@@ -17,6 +17,15 @@ namespace Graphics {
 		int LoadShader(std::string PathVS, std::string PathFS);
 		bool UseShader(int Id);
 
+		void setUniform1f(const char* name, float value);
+		void setUniform1fv(const char* name, float* value, int count);
+		void setUniform1i(const char* name, int value);
+		void setUniform1iv(const char* name, int* value, int count);
+		void setUniform2f(const char* name, const vec2& vector);
+		void setUniform3f(const char* name, const vec3& vector);
+		void setUniform4f(const char* name, const vec4& vector);
+		void setUniformMat4(const char* name, const mat4& matrix);
+
 	private:
 		ShaderManager();
 		ShaderManager(const ShaderManager& s) = delete;

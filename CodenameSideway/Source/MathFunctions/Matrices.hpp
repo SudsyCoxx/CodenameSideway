@@ -1,9 +1,9 @@
-
 #pragma once
 
 #include "Vector.hpp"
 
 namespace MathFuncs {
+
 	#define M_PI 3.1415926
 
 	class mat2 {
