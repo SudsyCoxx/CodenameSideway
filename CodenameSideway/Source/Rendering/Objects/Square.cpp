@@ -1,5 +1,7 @@
 #include "Square.hpp"
 
+using namespace Graphics;
+
 Square::Square(vec3 position, vec2 size, vec3 color) {
 	m_shaderProgram = Graphics::ShaderManager::GetInstance().LoadShader(".\\Resources\\Shaders\\vs.shader", ".\\Resources\\Shaders\\fs.shader");
 

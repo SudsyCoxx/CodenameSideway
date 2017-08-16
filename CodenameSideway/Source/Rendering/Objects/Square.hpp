@@ -7,24 +7,24 @@
 #include "../../MathFunctions/Vector.hpp"
 #include "../Renderable.hpp"
 
-class Square : public Renderable
-{
-public:
-	Square(vec3 position, vec2 size, vec3 color = vec3(1,1,1));
+namespace Graphics {
+	class Square : public Renderable
+	{
+	public:
+		Square(vec3 position, vec2 size, vec3 color = vec3(1, 1, 1));
 
-	~Square();
+		~Square();
 
-	void Setup();
-	void Draw();
-	void Destroy();
+		void Setup();
+		void Draw();
+		void Destroy();
 
-	void SetVertices();
+		void SetVertices();
 
-private:
-	unsigned int m_shaderProgram = -1;
-	MathFuncs::vec2 m_size;
-	
-protected:
+	private:
+		unsigned int m_shaderProgram = -1;
+		MathFuncs::vec2 m_size;
 
-};
-
+	protected:
+	};
+}

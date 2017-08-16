@@ -1,5 +1,6 @@
 #include "MouseHandler.hpp"
-#include <sstream>
+
+using namespace Input;
 
 void MouseHandler::PositionCallback(GLFWwindow* window, double xpos, double ypos){
     MouseHandler::GetInstance().m_position.x = xpos;
@@ -15,9 +16,7 @@ void MouseHandler::ButtonCallback(GLFWwindow* window, int button, int action, in
 }
 
 bool MouseHandler::PressMouseButton(t_button button){
-    if(m_ButtonStatus.count(button) > 0){
-        return false;
-    }
+    if(m_ButtonStatus.count(button) > 0) return false;
 
     std::lock_guard<std::mutex> lock(m_lock);
     m_ButtonStatus[button] = m_time.ElapsedMs();
@@ -26,9 +25,7 @@ bool MouseHandler::PressMouseButton(t_button button){
 }
 
 bool MouseHandler::ReleaseMouseButton(t_button button){
-    if(m_ButtonStatus.count(button) == 0){
-        return false;
-    }
+    if(m_ButtonStatus.count(button) == 0) return false;
     
     std::lock_guard<std::mutex> lock(m_lock);
     m_ButtonStatus.erase(button);

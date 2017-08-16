@@ -12,18 +12,18 @@ using namespace Graphics;
 
 TextureManager::TextureManager() {
 	// call this ONLY when linking with FreeImage as a static library
-	#ifdef FREEIMAGE_LIB
+	//#ifdef FREEIMAGE_LIB
 		FreeImage_Initialise();
-	#endif
+	//#endif
 
 	glEnable(GL_TEXTURE_2D);
 }
 	
 TextureManager::~TextureManager() {
 	// call this ONLY when linking with FreeImage as a static library
-	#ifdef FREEIMAGE_LIB
+	//#ifdef FREEIMAGE_LIB
 		FreeImage_DeInitialise();
-	#endif
+	//#endif
 
 	UnloadAllTextures();
 }

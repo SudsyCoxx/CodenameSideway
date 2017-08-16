@@ -32,15 +32,15 @@ void WindowManager::SetProperties() {
 }
 
 void WindowManager::SetCallbacks() {
-	glfwSetKeyCallback(GetWindow(), KeyHandler::Callback);
-	glfwSetMouseButtonCallback(GetWindow(), MouseHandler::ButtonCallback);
-	glfwSetCursorPosCallback(GetWindow(), MouseHandler::PositionCallback);
+	glfwSetKeyCallback(GetWindow(), Input::KeyHandler::Callback);
+	glfwSetMouseButtonCallback(GetWindow(), Input::MouseHandler::ButtonCallback);
+	glfwSetCursorPosCallback(GetWindow(), Input::MouseHandler::PositionCallback);
 	glfwSetWindowSizeCallback(GetWindow(), WindowManager::WndSizeCallback);
 }
 
 bool WindowManager::CreateWnd(int Width, int Height, std::string Title) {
-	Utilities::Logging::GetInstance().EnableLogLevel(ID_TRACE, true);
-	Utilities::Logging::GetInstance().EnableLogLevel(ID_DEBUG, true);
+	//Utilities::Logging::GetInstance().EnableLogLevel(ID_TRACE, true);
+	//Utilities::Logging::GetInstance().EnableLogLevel(ID_DEBUG, true);
 	Utilities::Logging::GetInstance().Log(ID_TRACE, 0, "Creating Window", "");
 
 	m_width = Width;
@@ -108,8 +108,6 @@ void WindowManager::Run() {
 		}
 	}
 
-	time_t prev, curr;
-	time(&prev);
 	while (!ShouldClose()) {
 		Utilities::FPSManager::GetInstance().UpdateFPS();
 
@@ -124,7 +122,7 @@ void WindowManager::Run() {
 
 		glfwPollEvents();
 
-		if (KeyHandler::GetInstance().GetKeyHoldTime(GLFW_KEY_ESCAPE) > 0 || KeyHandler::GetInstance().GetKeyHoldTime(GLFW_KEY_Q) > 0) {
+		if (Input::KeyHandler::GetInstance().GetKeyHoldTime(GLFW_KEY_ESCAPE) > 0 || Input::KeyHandler::GetInstance().GetKeyHoldTime(GLFW_KEY_Q) > 0) {
 			glfwSetWindowShouldClose(GetWindow(), GLFW_TRUE);
 		}
 	}

@@ -4,7 +4,7 @@
 
 namespace MathFuncs {
 
-	#define M_PI 3.1415926
+	#define M_PI 3.1415926f
 
 	class mat2 {
 		vec2  _m[2];

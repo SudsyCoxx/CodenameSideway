@@ -4,6 +4,7 @@
 #include <sstream>
 
 using namespace Utilities;
+using namespace Input;
 
 void KeyHandler::Callback(GLFWwindow* window, int key, int scancode, int action, int mods){
     if(action == GLFW_PRESS){
