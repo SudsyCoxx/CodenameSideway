@@ -41,9 +41,20 @@ void TextureManager::EnableTextures(){
 }
 
 int TextureManager::BindTexture(const std::string& path){
+	if (m_textureMap.count(path) == 0) {
+		return -1;
+	}
+
+	for(int i=0;i<m_currentTextures.size(); i++){
+		if (m_currentTextures[i] == m_allTextures[m_textureMap[path]]) {
+			return i;
+		}
+	}
+
     if((int)m_currentTextures.size() == m_maxTextures){
         ResetCurrentTextures();
     }
+
     m_currentTextures.push_back(m_allTextures[m_textureMap[path]]);
     return (int)m_currentTextures.size();
 }
