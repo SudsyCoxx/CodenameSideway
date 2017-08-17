@@ -12,16 +12,18 @@ using namespace MathFuncs;
 namespace Graphics {
 	class Renderable : public RenderInterface {
 	public:
-
 		struct vertex {
 			vec3 position;
 			vec3 color;
+			vec2 uv;
+			float tid;
 		};
 
 	private:
 
 	protected:
 		Utilities::SmartPointer<Buffers::VertexBufferObject> m_vbo;
+		unsigned int m_textureID = -1;
 		std::unique_ptr<vertex[]> m_vertices;
 		std::unique_ptr<unsigned int[]> m_indices;
 		vec3 m_position;

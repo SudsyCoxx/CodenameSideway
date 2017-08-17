@@ -40,7 +40,7 @@ void WindowManager::SetCallbacks() {
 
 bool WindowManager::CreateWnd(int Width, int Height, std::string Title) {
 	//Utilities::Logging::GetInstance().EnableLogLevel(ID_TRACE, true);
-	//Utilities::Logging::GetInstance().EnableLogLevel(ID_DEBUG, true);
+	Utilities::Logging::GetInstance().EnableLogLevel(ID_DEBUG, true);
 	Utilities::Logging::GetInstance().Log(ID_TRACE, 0, "Creating Window", "");
 
 	m_width = Width;
@@ -99,19 +99,22 @@ void WindowManager::WndSizeCallback(GLFWwindow* wnd, int width, int height) {
 void WindowManager::Run() {
 	Utilities::FPSManager::GetInstance().Start();
 
-	for (float i = -10; i < 10; i+=.25f) {
-		for (float j = -10; j < 10; j+=.25f) {
-			std::stringstream ss;
-			ss << i << j;
-
-			AddRenderableObject(ss.str(), Utilities::SmartPointer<RenderInterface>(new Square(vec3(i, j, 1), vec2(.24f, .24f), vec3(cos(i), sin(i-j), tan(i-j)*atan(i+2*j)))));
-		}
-	}
+	//for (float i = -10; i < 10; i+=.25f) {
+	//	for (float j = -10; j < 10; j+=.25f) {
+	//		std::stringstream ss;
+	//		ss << i << j;
+	//
+	AddRenderableObject("Link", Utilities::SmartPointer<RenderInterface>(new Square(vec3(-1, -1, 1), vec2(1.f, 1.f), vec3(0,1,1), ".\\Resources\\Images\\link.png")));
+	//	}
+	//}
 
 	while (!ShouldClose()) {
 		Utilities::FPSManager::GetInstance().UpdateFPS();
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glClearColor(1, 1, 1, 1);
+
+		Graphics::ShaderManager::GetInstance().setUniformMat4("pr_matrix", Ortho(-10, 10, -10, 10, -.1, -100));
 
 		for (auto& object : m_renderableObjects) {
 			object.second->Setup();

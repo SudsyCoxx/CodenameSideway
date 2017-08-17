@@ -1,17 +1,24 @@
 #include "Square.hpp"
 
+#include "../../Textures/TextureManager.hpp"
+#include "../../Utilities/Logging.hpp"
+
+using namespace Utilities;
 using namespace Graphics;
 
-Square::Square(vec3 position, vec2 size, vec3 color) {
+Square::Square(vec3 position, vec2 size, vec3 color, std::string texture) {
 	m_shaderProgram = Graphics::ShaderManager::GetInstance().LoadShader(".\\Resources\\Shaders\\vs.shader", ".\\Resources\\Shaders\\fs.shader");
-
+	if (texture != "") {
+		TextureManager::GetInstance().SubmitTexture(texture);
+		m_textureID = TextureManager::GetInstance().BindTexture(".\\Resources\\Images\\link.png");
+	}
 	m_size = size;
 	m_position = position;
 	m_color = color;
 	m_vbo = new Buffers::VertexBufferObject(GL_ARRAY_BUFFER);
 	
 	m_vertices.reset(new vertex[4]);
-	m_indices.reset(new unsigned int[4]);
+	m_indices.reset(new unsigned int[6]);
 
 	SetVertices();
 	Setup();
@@ -26,20 +33,29 @@ void Square::Setup() {
 
 void Square::Draw() {
 	Graphics::ShaderManager::GetInstance().UseShader(m_shaderProgram);
-	Graphics::ShaderManager::GetInstance().setUniformMat4("pr_matrix", Ortho(-10, 10, -10, 10, -.1, -100));
+
+	TextureManager::GetInstance().BindTexture(".\\Resources\\Images\\link.png");
+	TextureManager::GetInstance().EnableTextures();
+	ShaderManager::GetInstance().setUniform1iv("textures", TextureManager::GetInstance().GetTextureIDs(), 16);
 
 	m_vbo->bind();
 
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
+	glEnableVertexAttribArray(2);
+	glEnableVertexAttribArray(3);
 
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertex), 0);
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_TRUE, sizeof(vertex), (void*)offsetof(vertex, vertex::color));
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(vertex), (void*)offsetof(vertex, vertex::color));
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(vertex), (void*)offsetof(vertex, vertex::uv));
+	glVertexAttribPointer(3, 1, GL_FLOAT, GL_FALSE, sizeof(vertex), (void*)offsetof(vertex, vertex::tid));
 
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, m_indices.get());
 
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
+	glDisableVertexAttribArray(2);
+	glDisableVertexAttribArray(3);
 
 	m_vbo->unbind();
 }
@@ -58,6 +74,16 @@ void Square::SetVertices() {
 	m_vertices[1].color = m_color;
 	m_vertices[2].color = m_color;
 	m_vertices[3].color = m_color;
+
+	m_vertices[0].uv = vec2(0,0);
+	m_vertices[1].uv = vec2(1,0);
+	m_vertices[2].uv = vec2(1,1);
+	m_vertices[3].uv = vec2(0,1);
+
+	m_vertices[0].tid = m_textureID;
+	m_vertices[1].tid = m_textureID;
+	m_vertices[2].tid = m_textureID;
+	m_vertices[3].tid = m_textureID;
 
 	m_indices[0] = 0;
 	m_indices[1] = 1;

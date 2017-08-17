@@ -1,50 +1,50 @@
-//**********************************************
-//Singleton Texture Manager class
-//Written by Ben English
-//benjamin.english@oit.edu
-//
-//For use with OpenGL and the FreeImage library
-//**********************************************
-
-#pragma once 
-
-#include <windows.h>
-#include <gl/gl.h>
-#include "FreeImage.h"
-#include <map>
-#include <string>
-#include <mutex>
+#pragma once
 
 #include "../Utilities/Singleton.hpp"
+#include "Texture.hpp"
+
+#include <vector>
+#include <string>
+#include <map>
+#include <memory>
+
+using namespace Utilities;
 
 namespace Graphics {
-	class TextureManager : public Utilities::Singleton<TextureManager> {
-		friend class Utilities::Singleton<TextureManager>;
-	public:
-		virtual ~TextureManager();
+    
+    typedef std::map<std::string, int> textureMap;
+    
+    struct searchResult {
+        bool isFound;
+		Texture* texture;
+    };
+    
+    class TextureManager : public Singleton<TextureManager> {
+		friend class Singleton<TextureManager>;
+    public:
+        ~TextureManager();
 
-		unsigned int LoadTexture(std::string filename,	//where to load the file from
-			GLenum image_format = GL_RGB,				//format the image is in
-			GLint internal_format = GL_RGB,				//format to store the image in
-			GLint level = 0,							//mipmapping level
-			GLint border = 0);							//border size
-
-		bool BindTexture(const unsigned int texID);
-
-		void UnloadAllTextures();
-		bool UnloadTexture(const unsigned int texID);
-
+        void EnableTextures();
+        void SubmitTexture(const std::string& path);
+        int BindTexture(const std::string& path);
+        inline GLint* GetTextureIDs() const { return m_textureIDs.get(); }
+	
 	private:
 		TextureManager();
-		TextureManager(const TextureManager& tm) = delete;
-		TextureManager& operator=(const TextureManager& tm) = delete;
+		TextureManager(const TextureManager& s) = delete;
+		TextureManager& operator=(const TextureManager& s) = delete;
 
-		std::map<unsigned int, GLuint> m_texID;
-		std::map<std::string, int> m_stringToTexIDMap;
-		unsigned int m_nextTexID = 0;
+		searchResult FindTexture(const std::string& path);
+        inline void ResetCurrentTextures(){ m_currentTextures.clear(); }
+		
+		int m_maxTextures;
 
-		std::mutex m_lock;
+		std::vector<Texture*> m_allTextures;	
+		std::vector<Texture*> m_currentTextures;
+		std::unique_ptr<GLint[]> m_textureIDs;	
 
-	protected:
+		textureMap m_textureMap;
+
 	};
+
 }

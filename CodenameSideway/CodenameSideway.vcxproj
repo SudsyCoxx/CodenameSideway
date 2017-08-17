@@ -131,6 +131,7 @@
     <ClCompile Include="Source\Input\KeyHandler.cpp" />
     <ClCompile Include="Source\Input\MouseHandler.cpp" />
     <ClCompile Include="Source\Shaders\ShaderManager.cpp" />
+    <ClCompile Include="Source\Textures\Texture.cpp" />
     <ClCompile Include="Source\Textures\TextureManager.cpp" />
     <ClCompile Include="Source\Utilities\Logging.cpp" />
     <ClCompile Include="Source\Window\WindowManager.cpp" />
@@ -150,6 +151,7 @@
     <ClInclude Include="Source\Rendering\Renderer.hpp" />
     <ClInclude Include="Source\Rendering\RenderInterface.hpp" />
     <ClInclude Include="Source\Shaders\ShaderManager.hpp" />
+    <ClInclude Include="Source\Textures\Texture.hpp" />
     <ClInclude Include="Source\Textures\TextureManager.hpp" />
     <ClInclude Include="Source\Threading\ThreadManager.hpp" />
     <ClInclude Include="Source\Utilities\FPSManager.hpp" />
