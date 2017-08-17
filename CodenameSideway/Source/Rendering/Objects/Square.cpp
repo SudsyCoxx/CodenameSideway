@@ -9,8 +9,9 @@ using namespace Graphics;
 Square::Square(vec3 position, vec2 size, vec3 color, std::string texture) {
 	m_shaderProgram = Graphics::ShaderManager::GetInstance().LoadShader(".\\Resources\\Shaders\\vs.shader", ".\\Resources\\Shaders\\fs.shader");
 	if (texture != "") {
-		TextureManager::GetInstance().SubmitTexture(texture);
-		m_textureID = TextureManager::GetInstance().BindTexture(".\\Resources\\Images\\link.png");
+		m_texPath = texture;
+		TextureManager::GetInstance().SubmitTexture(m_texPath);
+		m_textureID = TextureManager::GetInstance().BindTexture(m_texPath);
 	}
 	m_size = size;
 	m_position = position;
@@ -34,7 +35,7 @@ void Square::Setup() {
 void Square::Draw() {
 	Graphics::ShaderManager::GetInstance().UseShader(m_shaderProgram);
 
-	TextureManager::GetInstance().BindTexture(".\\Resources\\Images\\link.png");
+	TextureManager::GetInstance().BindTexture(m_texPath);
 	TextureManager::GetInstance().EnableTextures();
 	ShaderManager::GetInstance().setUniform1iv("textures", TextureManager::GetInstance().GetTextureIDs(), 16);
 
@@ -61,7 +62,6 @@ void Square::Draw() {
 }
 
 void Square::Destroy() {
-
 }
 
 void Square::SetVertices() {

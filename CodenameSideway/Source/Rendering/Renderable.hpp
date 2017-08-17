@@ -24,6 +24,7 @@ namespace Graphics {
 	protected:
 		Utilities::SmartPointer<Buffers::VertexBufferObject> m_vbo;
 		unsigned int m_textureID = -1;
+		std::string m_texPath;
 		std::unique_ptr<vertex[]> m_vertices;
 		std::unique_ptr<unsigned int[]> m_indices;
 		vec3 m_position;
